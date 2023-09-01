@@ -1,6 +1,6 @@
 package Model;
 
-public class Toy {
+public class ModelToy {
     private static long idCount;
     private long id;
     private String title;
@@ -10,7 +10,7 @@ public class Toy {
         idCount = 1;
     }
 
-    public Toy(String title, int weight) {
+    public ModelToy(String title, int weight) {
         this.id = idCount++;
         this.title = title;
         this.weight = weight;

@@ -1,2 +1,4 @@
-package Controller;public class EventLogic {
+package Controller;
+
+public class EventLogic {
 }

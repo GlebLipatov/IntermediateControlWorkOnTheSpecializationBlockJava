@@ -3,23 +3,23 @@ package Model;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Event<T extends EventItem> {
-    private Queue<T> queue;
+public class ModelEvent {
+    private Queue<ModelToy> queue;
 
-    public Event() {
+    public ModelEvent() {
         this.queue = new LinkedList<>();
     }
 
-    public boolean addItem(T item) {
-        return this.queue.add((T) item);
+    public boolean addItem(ModelToy item) {
+        return this.queue.add(item);
     }
 
-    public T getItem() {
+    public ModelToy getItem() {
         if (queue.isEmpty()) return null;
         else return queue.remove();
     }
 
-    public T nextItem() {
+    public ModelToy nextItem() {
         if (queue.isEmpty()) return null;
         else return queue.peek();
     }
