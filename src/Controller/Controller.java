@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.ModelMenusData;
+import Controller.LogicMenu.LogicMainMenu;
 import Model.ModelEvent;
 import View.ViewConsole;
 
@@ -9,16 +9,24 @@ public class Controller {
     private LogicMainMenu mainMenu;
     private ViewConsole view;
     private ModelEvent event;
-    private ModelMenusData data;
 
     public Controller(ViewConsole view, ModelEvent event) {
         this.view = view;
         this.event = event;
-        this.data = new ModelMenusData();
-        this.mainMenu = new LogicMainMenu(view, event, data);
+        this.mainMenu = new LogicMainMenu(view, event);
     }
 
-    public void start() {
+    /**
+     * Запустить розыгрыш.
+     *
+     * @param path путь к файлу с информацией об уже выигранных игрушках.
+     */
+    public void start(String path) {
+        mainMenu.init();
+        event.loadPrizeToy(path);
+        event.setIdLast();
+
+        view.greeting();
         mainMenu.enter();
     }
 }

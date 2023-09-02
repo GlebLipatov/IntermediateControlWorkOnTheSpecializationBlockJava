@@ -1,35 +1,39 @@
-package Controller;
+package Controller.LogicMenu;
 
 import Model.ModelEvent;
-import Model.ModelMenusData;
 import View.ViewConsole;
 
 public class LogicMainMenu {
-    private final String CATALOG = "catalog";
-    private final String EVENT = "event";
-    private final String EXIT = "exit";
+    private final int CATALOG = 1;
+    private final int EVENT = 2;
+    private final int EXIT = 3;
     private ViewConsole view;
     private ModelEvent event;
-    private ModelMenusData data;
     private LogicEventMenu eventMenu;
 
-    public LogicMainMenu(ViewConsole view, ModelEvent event, ModelMenusData data) {
+    public LogicMainMenu(ViewConsole view, ModelEvent event) {
         this.view = view;
         this.event = event;
-        this.data = data;
-        this.eventMenu = new LogicEventMenu(view, event, data);
+        this.eventMenu = new LogicEventMenu(view, event);
     }
 
-    public void enter() {
-        data.load();
-        view.loadMenusItems(data.getMenusItems());
+    /**
+     * Загрузка информации о меню и элементов меню.
+     */
+    public void init() {
+        view.loadData();
+        event.loadToyType();
+    }
 
+    /**
+     * Вход в меню.
+     */
+    public void enter() {
         boolean isContinue = true;
-        String inputFromUser;
+        int inputFromUser;
 
         while (isContinue) {
-            view.greeting();
-            inputFromUser = view.promptMenu(data.getMainMenu());
+            inputFromUser = view.promptMainMenu();
 
             switch (inputFromUser) {
                 case CATALOG:
